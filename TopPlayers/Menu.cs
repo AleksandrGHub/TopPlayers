@@ -2,8 +2,8 @@
 {
     class Menu
     {
-        private const string SelectPlayersComand = "Отобрать";
-        private const string ShowPlayersCommand = "Показать";
+        private const string ShowPlayersByLevelCommand = "Уровень";
+        private const string ShowPlayersByPowerCommand = "Сила";
         private const string ExitCommand = "Выход";
 
         private Catalog _catalog = new Catalog();
@@ -22,12 +22,12 @@
 
                 switch (userInput)
                 {
-                    case SelectPlayersComand:
-                        _catalog.SelectPlayers();
+                    case ShowPlayersByLevelCommand:
+                        _catalog.ShowTopByLevel();
                         break;
 
-                    case ShowPlayersCommand:
-                        _catalog.ShowTopPlayers();
+                    case ShowPlayersByPowerCommand:
+                        _catalog.ShowTopByPower();
                         break;
                 }
             }
@@ -36,8 +36,8 @@
 
         private void ShowInfo()
         {
-            Console.WriteLine($"************* Команды меню *************\nВыбрать ТОП игроков, команда: {SelectPlayersComand}" +
-                $"\nПоказать ТОП игроков, команда: {ShowPlayersCommand}\nДля выхода введите команду: {ExitCommand}\n");
+            Console.WriteLine($"************* Команды меню *************\nПоказать ТОП игроков по силе, команда: {ShowPlayersByPowerCommand}" +
+                $"\nПоказать ТОП игроков по уровню, команда: {ShowPlayersByLevelCommand}\nДля выхода введите команду: {ExitCommand}\n");
         }
     }
 }

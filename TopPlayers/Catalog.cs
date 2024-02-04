@@ -4,43 +4,35 @@
     {
         private Random _random = new Random();
         private List<Player> _players = new List<Player>();
-        private List<Player> _topPlayers = new List<Player>();
+        private int _countChoices = 3;
+
 
         public Catalog()
         {
             AddPlayers();
         }
 
+        public void ShowTopByPower()
+        {
+            Console.WriteLine($"Список ТОП-{_countChoices} игроков по силе.");
+
+            Show(_players.OrderByDescending(player => player.Power).Take(_countChoices).ToList());
+
+            Console.ReadKey();
+        }
+
+        public void ShowTopByLevel()
+        {
+            Console.WriteLine($"Список ТОП-{_countChoices} игроков по уровню.");
+
+            Show(_players.OrderByDescending(player => player.Level).Take(_countChoices).ToList());
+
+            Console.ReadKey();
+        }
+
         public void ShowPlayers()
         {
-            Console.WriteLine("Список игроков.");
             Show(_players);
-        }
-
-        public void ShowTopPlayers()
-        {
-            if (_topPlayers.Count > 0)
-            {
-                Console.WriteLine("Список ТОП трёх игроков.");
-                Show(_topPlayers);
-            }
-            else
-            {
-                Console.WriteLine("Список ТОП трёх игроков пустой.\nНажмите любую клавишу.");
-            }
-
-            Console.ReadKey();
-        }
-
-        public void SelectPlayers()
-        {
-            int countChoices = 3;
-
-            _topPlayers = _players.OrderByDescending(player => player.Level).Take(countChoices).Concat(_players.OrderByDescending(player => player.Power).Take(countChoices)).ToList();
-
-            Console.WriteLine("Список ТОП трёх игроков Отобран.\nНажмите любую клавишу.");
-
-            Console.ReadKey();
         }
 
         private void Show(List<Player> players)
@@ -49,8 +41,6 @@
             {
                 player.ShowInfo();
             }
-
-            Console.WriteLine();
         }
 
         private void AddPlayers()
